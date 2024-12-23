@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Cognified",
+        "description": "Mobile-friendly application to enhance cognitive abilities through interactive games.",
+        "technologies": ["HTML", "CSS", "JavaScript", "Capacitor.js"],
+        "links": {
+            "Website": "https://pizzalover125.github.io/cognified/build/index.html",
+            "GitHub": "https://github.com/pizzalover125/cognified"
+        }
+    },
+    {
+        "name": "SkimVid",
+        "description": "YouTube video summarization tool supporting multiple languages.",
+        "technologies": ["Flask", "Python", "HTML", "CSS", "Gemini API"],
+        "links": {
+            "Website": "https://video-summary-zayq.onrender.com/",
+            "GitHub": "https://github.com/pizzalover125/video-summary"
+        }
+    },
+    {
+        "name": "Digit Predictor",
+        "description": "Convolutional Neural Network for classifying handwritten digits.",
+        "technologies": ["HTML", "CSS", "JavaScript", "TensorFlow.js"],
+        "links": {
+            "Website": "https://supercoolai.netlify.app/",
+            "GitHub": "https://github.com/pizzalover125/digitPredictor"
+        }
+    }
+]

@@ -1,2 +1,3 @@
 # cli-portfolio
-Portfolio in CLI format.
+
+A customizable CLI portfolio developed by pizzalover125.

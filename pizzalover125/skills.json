@@ -1,0 +1,8 @@
+{
+    "Frontend Frameworks": ["HTML", "Flask", "Svelte"],
+    "Frontend Styling": ["CSS", "Bootstrap", "Tailwind"],
+    "Backend": ["Python", "JavaScript", "jQuery"],
+    "Databases": ["SQLite", "Supabase"],
+    "AI/ML": ["OpenCV", "TensorFlow"],
+    "Tooling": ["GitHub", "VSCode", "Linux", "Windows", "Raspberry Pi"]
+}
