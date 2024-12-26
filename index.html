@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Previous head section remains the same... -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -126,7 +125,6 @@
             ]
         };
 
-        // Terminal configuration remains the same...
         const term = new Terminal({
             cursorBlink: true,
             fontSize: 14,
@@ -153,7 +151,6 @@
 
         term.open(document.getElementById('terminal'));
 
-        // Resize handler remains the same...
         function resizeTerminal() {
             const container = document.getElementById('terminal-container');
             const terminalElement = document.querySelector('.terminal');
@@ -170,7 +167,6 @@
         window.addEventListener('resize', resizeTerminal);
         resizeTerminal();
 
-        // Terminal utility functions remain the same...
         function writeToTerminal(text, newLine = true) {
             term.write(text + (newLine ? '\r\n' : ''));
         }
@@ -179,7 +175,6 @@
             term.write('\x1b[2J\x1b[H');
         }
 
-        // Display functions remain the same...
         function displayHeader() {
             clearScreen();
             writeToTerminal('\n' + '='.repeat(50));
@@ -278,7 +273,6 @@
             }
         });
 
-        // Here's the fixed handleChoice function
         function handleChoice(choice) {
             const validChoices = {
                 '1': displayIntro,
@@ -321,7 +315,6 @@
             }
         }
 
-        // Start the application
         displayMenu();
     </script>
 </body>
