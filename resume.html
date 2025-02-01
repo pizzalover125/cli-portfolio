@@ -1,0 +1,176 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #34495e;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Resume Generator</h2>
+        <form id="resumeForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="github">GitHub:</label>
+            <input type="url" id="github" name="github">
+
+            <label for="skills">Skills (comma separated):</label>
+            <input type="text" id="skills" name="skills">
+
+            <label for="projects">Projects (JSON format):</label>
+            <textarea id="projects" name="projects" rows="3"></textarea>
+
+            <label for="experience">Experience (JSON format):</label>
+            <textarea id="experience" name="experience" rows="3"></textarea>
+
+            <label for="education">Education:</label>
+            <input type="text" id="education" name="education">
+
+            <label for="certifications">Certifications (comma separated):</label>
+            <input type="text" id="certifications" name="certifications">
+
+            <label for="introduction">Introduction:</label>
+            <textarea id="introduction" name="introduction" rows="3"></textarea>
+
+            <button type="button" onclick="generateResume()">Download Resume</button>
+        </form>
+    </div>
+
+    <script>
+        function generateResume() {
+            const formElements = document.getElementById('resumeForm').elements;
+            const formData = {};
+
+            for (let element of formElements) {
+                if (element.type !== 'button') {
+                    formData[element.name] = element.value.trim();
+                }
+            }
+
+            formData.skills = formData.skills ? formData.skills.split(',').map(s => s.trim()) : [];
+            formData.certifications = formData.certifications ? formData.certifications.split(',').map(c => c.trim()) : [];
+            
+            try {
+                formData.projects = formData.projects ? JSON.parse(formData.projects) : [];
+            } catch (error) {
+                alert("Error: Invalid JSON format in Projects. Please correct it.");
+                return;
+            }
+
+            try {
+                formData.experience = formData.experience ? JSON.parse(formData.experience) : [];
+            } catch (error) {
+                alert("Error: Invalid JSON format in Experience. Please correct it.");
+                return;
+            }
+
+            const resumeHTML = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>${formData.name}'s Resume</title>
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; }
+                    h1, h2 { color: #2c3e50; }
+                    ul { list-style: none; padding: 0; }
+                    li { margin-bottom: 10px; }
+                    a { color: #3498db; text-decoration: none; }
+                </style>
+            </head>
+            <body>
+                <h1>${formData.name}</h1>
+                <p>Email: ${formData.email}</p>
+                ${formData.github ? `<p>GitHub: <a href="${formData.github}" target="_blank">${formData.github}</a></p>` : ''}
+                
+                <h2>Skills</h2>
+                <ul>${formData.skills.map(skill => `<li>${skill}</li>`).join('')}</ul>
+                
+                ${formData.projects.length > 0 ? `
+                <h2>Projects</h2>
+                <ul>${formData.projects.map(proj => `<li><strong>${proj.name}</strong>: ${proj.description}</li>`).join('')}</ul>
+                ` : ''}
+
+                ${formData.experience.length > 0 ? `
+                <h2>Experience</h2>
+                <ul>${formData.experience.map(exp => `<li><strong>${exp.title}</strong> - ${exp.company}<br>${exp.description}</li>`).join('')}</ul>
+                ` : ''}
+                
+                <h2>Education</h2>
+                <p>${formData.education}</p>
+                
+                ${formData.certifications.length > 0 ? `
+                <h2>Certifications</h2>
+                <ul>${formData.certifications.map(cert => `<li>${cert}</li>`).join('')}</ul>
+                ` : ''}
+
+                ${formData.introduction ? `<h2>Introduction</h2><p>${formData.introduction}</p>` : ''}
+            </body>
+            </html>`;
+
+            const blob = new Blob([resumeHTML], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `${formData.name.replace(/\s+/g, '_')}_Resume.html`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

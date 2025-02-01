@@ -134,7 +134,8 @@
             Theme: "Terminal Dark",
             FavoriteFood: "Pizza",
             Hobbies: "Chess, Speech & Debate",
-            Quote: "Code is like humor. When you have to explain it, it’s bad."
+            Quote: "Code is like humor. When you have to explain it, it’s bad.",
+            Customize: "Want to customize this? Fork the repo! Or, go to /resume.html and get a resume!"
         };
 
         const term = new Terminal({
@@ -236,7 +237,7 @@
 
         function displayCertifications() {
             displayHeader();
-            writeToTerminal('\x1b[36m📜 Certifications:\x1b[0m\n');
+            writeToTerminal('\x1b[36m📜  Certifications:\x1b[0m\n');
             portfolioData.certifications.forEach(cert => {
                 writeToTerminal(`\x1b[32m•\x1b[0m ${cert}`);
             });
@@ -245,7 +246,7 @@
 
         function displayContact() {
             displayHeader();
-            writeToTerminal('\x1b[36m📞 Contact Information:\x1b[0m\n');
+            writeToTerminal('\x1b[36m📞  Contact Information:\x1b[0m\n');
             Object.entries(portfolioData.contact).forEach(([method, info]) => {
                 writeToTerminal(`\x1b[33m${method}:\x1b[0m ${info}`);
             });
@@ -289,14 +290,14 @@
         function displayMenu() {
             displayHeader();
             writeToTerminal('\x1b[36mSelect an option:\x1b[0m');
-            writeToTerminal('\x1b[32m1.\x1b[0m Introduction');
-            writeToTerminal('\x1b[32m2.\x1b[0m Skills');
-            writeToTerminal('\x1b[32m3.\x1b[0m Projects');
-            writeToTerminal('\x1b[32m4.\x1b[0m Experience');
-            writeToTerminal('\x1b[32m5.\x1b[0m Certifications');
-            writeToTerminal('\x1b[32m6.\x1b[0m Contact');
-            writeToTerminal('\x1b[32mneofetch.\x1b[0m System Info');
-            writeToTerminal('\x1b[31m0.\x1b[0m Exit\n');
+            writeToTerminal('\x1b[32m1\x1b[0m Introduction');
+            writeToTerminal('\x1b[32m2\x1b[0m Skills');
+            writeToTerminal('\x1b[32m3\x1b[0m Projects');
+            writeToTerminal('\x1b[32m4\x1b[0m Experience');
+            writeToTerminal('\x1b[32m5\x1b[0m Certifications');
+            writeToTerminal('\x1b[32m6\x1b[0m Contact');
+            writeToTerminal('\x1b[32mneofetch\x1b[0m System Info');
+            writeToTerminal('\x1b[31m0\x1b[0m Exit\n');
             writeToTerminal('\x1b[33mEnter your choice:\x1b[0m ', false);
         }
 

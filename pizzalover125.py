@@ -1,13 +1,16 @@
+# Imports
 import sys
 import os
 import platform
 import json
 import textwrap
 
+# Data from JSON files
 def getJsonFromFile(fileName):
     with open(fileName, 'r') as file:
         return json.load(file)
 
+# Main Class
 class PortfolioCLI:
     def __init__(self):
         self.name = "🍕 pizzalover125"
@@ -54,7 +57,7 @@ class PortfolioCLI:
 
     def display_projects(self):
         self.display_header()
-        print("💻 Projects:\n")
+        print("💻  Projects:\n")
         for project in self.projects:
             print(f"{project['name']}:")
             print(f"  Description: {project['description']}")
@@ -68,21 +71,21 @@ class PortfolioCLI:
 
     def display_experience(self):
         self.display_header()
-        print("🏆 Experience:\n")
+        print("🏆  Experience:\n")
         for exp in self.experience:
             print(f"{exp['title']}:")
             print(f"  {exp['description']}\n")
 
     def display_certifications(self):
         self.display_header()
-        print("📜 Certifications:\n")
+        print("📜  Certifications:\n")
         for cert in self.certifications:
             print(f"- {cert}")
         print()
 
     def display_contact(self):
         self.display_header()
-        print("📞 Contact Information:\n")
+        print("📞  Contact Information:\n")
         for method, info in self.contact.items():
             print(f"{method}: {info}")
         print()

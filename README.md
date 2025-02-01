@@ -9,3 +9,6 @@ An open-source, customizable command line interface to view one's portfolio. Che
 4. Renanme "pizzalover125.py" into your username.
 5. Run [your-username].py and you have a CLI portfolio.
 6. Change the contents of index.html and add it to your personal site. 
+
+# or... 
+fill out the form in resume.html
