@@ -57,7 +57,6 @@
         <div id="terminal" class="terminal"></div>
     </div>
     <script>
-        // Portfolio data remains the same...
         const portfolioData = {
             name: "🍕 pizzalover125",
             skills: {
@@ -123,6 +122,19 @@
                 "Coursera Project Network: WordPress", 
                 "Coursera Project Network: Figma"
             ]
+        };
+
+        const neofetchData = {
+            OS: "Portfolio OS v1.0",
+            Host: "pizzalover125.tech",
+            Uptime: "Always coding",
+            Languages: Object.values(portfolioData.skills).flat().length + " languages & frameworks",
+            Projects: portfolioData.projects.length + " high quality completed",
+            GitHub: portfolioData.contact.GitHub,
+            Theme: "Terminal Dark",
+            FavoriteFood: "Pizza",
+            Hobbies: "Chess, Speech & Debate",
+            Quote: "Code is like humor. When you have to explain it, it’s bad."
         };
 
         const term = new Terminal({
@@ -240,6 +252,40 @@
             writeToTerminal('');
         }
 
+        function displayNeofetch() {
+            displayHeader();
+            const pizzaArt = [
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣶⣶⣦⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀",
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣷⣤⠀⠈⠙⢿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀",
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⠆⠰⠶⠀⠘⢿⣿⣿⣿⣿⣿⣆⠀⠀⠀",
+                "⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⠏⠀⢀⣠⣤⣤⣀⠙⣿⣿⣿⣿⣿⣷⡀⠀",
+                "⠀⠀⠀⠀⠀⠀⠀⠀⢠⠋⢈⣉⠉⣡⣤⢰⣿⣿⣿⣿⣿⣷⡈⢿⣿⣿⣿⣿⣷⡀",
+                "⠀⠀⠀⠀⠀⠀⠀⡴⢡⣾⣿⣿⣷⠋⠁⣿⣿⣿⣿⣿⣿⣿⠃⠀⡻⣿⣿⣿⣿⡇",
+                "⠀⠀⠀⠀⠀⢀⠜⠁⠸⣿⣿⣿⠟⠀⠀⠘⠿⣿⣿⣿⡿⠋⠰⠖⠱⣽⠟⠋⠉⡇",
+                "⠀⠀⠀⠀⡰⠉⠖⣀⠀⠀⢁⣀⠀⣴⣶⣦⠀⢴⡆⠀⠀⢀⣀⣀⣉⡽⠷⠶⠋⠀",
+                "⠀⠀⠀⡰⢡⣾⣿⣿⣿⡄⠛⠋⠘⣿⣿⡿⠀⠀⣐⣲⣤⣯⠞⠉⠁⠀⠀⠀⠀⠀",
+                "⠀⢀⠔⠁⣿⣿⣿⣿⣿⡟⠀⠀⠀⢀⣄⣀⡞⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀",
+                "⠀⡜⠀⠀⠻⣿⣿⠿⣻⣥⣀⡀⢠⡟⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+                "⢰⠁⠀⡤⠖⠺⢶⡾⠃⠀⠈⠙⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+                "⠈⠓⠾⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+            ];
+
+            const maxLength = Math.max(...pizzaArt.map(line => line.replace(/\x1b\[\d+m/g, '').length));
+            const info = Object.entries(neofetchData).map(([key, value]) => 
+                `\x1b[36m${key}\x1b[0m: ${value}`
+            );
+
+            pizzaArt.forEach((line, index) => {
+                const infoLine = info[index] || '';
+                const padding = ' '.repeat(maxLength - line.replace(/\x1b\[\d+m/g, '').length + 4);
+                writeToTerminal(line + padding + infoLine);
+            });
+            
+            writeToTerminal('');
+            writeToTerminal('\n\x1b[33mPress Enter to return to menu...\x1b[0m');
+        }
+
         function displayMenu() {
             displayHeader();
             writeToTerminal('\x1b[36mSelect an option:\x1b[0m');
@@ -249,6 +295,7 @@
             writeToTerminal('\x1b[32m4.\x1b[0m Experience');
             writeToTerminal('\x1b[32m5.\x1b[0m Certifications');
             writeToTerminal('\x1b[32m6.\x1b[0m Contact');
+            writeToTerminal('\x1b[32mneofetch.\x1b[0m System Info');
             writeToTerminal('\x1b[31m0.\x1b[0m Exit\n');
             writeToTerminal('\x1b[33mEnter your choice:\x1b[0m ', false);
         }
@@ -267,7 +314,7 @@
                     userInput = userInput.slice(0, -1);
                     term.write('\b \b');
                 }
-            } else if (/^[0-9]$/.test(char)) { // Only allow numbers
+            } else if (/^[0-9a-zA-Z]$/.test(char)) { // Allow numbers and letters
                 userInput += char;
                 term.write(char);
             }
@@ -280,7 +327,8 @@
                 '3': displayProjects,
                 '4': displayExperience,
                 '5': displayCertifications,
-                '6': displayContact
+                '6': displayContact,
+                'neofetch': displayNeofetch
             };
 
             choice = choice.trim();
